@@ -1,0 +1,18 @@
+name: Notify on Release Delete
+on:
+  release:
+    types: [deleted]
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Notify Slack
+      uses: rtCamp/action-slack-notify@v2.2.0
+      with:
+        status: 'warning'
+        text: 'A release was deleted in the repository.'
+        fields: 'repository'
+        channel: '#general'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
