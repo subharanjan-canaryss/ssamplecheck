@@ -13,7 +13,7 @@ on:
 jobs:
   analyze:
     name: Analyze
-    runs-on: [ uat-runner ]
+    runs-on: ubuntu-latest
     permissions:
       actions: read
       contents: read
@@ -59,17 +59,3 @@ jobs:
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
-     
-    - uses: actions/checkout@v2
-
-    - uses: RBL/GHAS-RBLWebsite@v3.6
-      with:
-          token: ${{ secrets.ATOKEN }}
-          repo: 'RBL/Kalpataru-Demo5-GHAS1'
-          # optionally define repo (default is calling repo)
-
-    - uses: actions/upload-artifact@v2
-      with:
-          name: results
-          path: alerts.xlsx 
-    
